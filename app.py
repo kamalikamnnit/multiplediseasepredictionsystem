@@ -27,11 +27,11 @@ import base64
 load_dotenv()
 #loading the saved models
 
-diabetes_model = pickle.load(open('C:/Users/rkama/OneDrive/Desktop/MultipleDiseasePredictionSystem/All_Models/diabetes_model.sav', 'rb'))
+diabetes_model = pickle.load(open('All_Models/diabetes_model.sav', 'rb'))
 
-heart_disease_model = pickle.load(open('C:/Users/rkama/OneDrive/Desktop/MultipleDiseasePredictionSystem/All_Models/heart_disease_model.sav', 'rb'))
+heart_disease_model = pickle.load(open('All_Models/heart_disease_model.sav', 'rb'))
 
-parkinsons_model = pickle.load(open('C:/Users/rkama/OneDrive/Desktop/MultipleDiseasePredictionSystem/All_Models/parkinsons_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('All_Models/parkinsons_model.sav', 'rb'))
 
 
 class NutritionAnalyzer:
