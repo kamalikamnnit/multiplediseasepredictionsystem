@@ -111,7 +111,8 @@ def create_predictions_table():
                     timestamp TEXT NOT NULL
                 )''')
     conn.commit()
-    
+
+create_users_table()
 create_predictions_table()
 
 def add_user(username, name, age, height, weight, password):
