@@ -20,6 +20,7 @@ from datetime import datetime
 import os
 import base64
 
+
 #initialse the cookie manager
 
 
@@ -101,19 +102,6 @@ def create_users_table():
                     password TEXT
                 )''')
     conn.commit()
-
-def create_predictions_table():
-    c.execute('''CREATE TABLE IF NOT EXISTS predictions (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    username TEXT NOT NULL,
-                    disease TEXT NOT NULL,
-                    result TEXT NOT NULL,
-                    timestamp TEXT NOT NULL
-                )''')
-    conn.commit()
-
-create_users_table()
-create_predictions_table()
 
 def add_user(username, name, age, height, weight, password):
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
