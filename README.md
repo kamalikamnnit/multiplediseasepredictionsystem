@@ -9,5 +9,5 @@ automatically generated PDF reports, making it a comprehensive and user-friendly
 
 Demo
 
-Uploading multipledisease.mp4…
+https://github.com/user-attachments/assets/f5d4e1fe-5acd-4763-8e53-70e52edbefc8
 
