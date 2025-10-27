@@ -1,5 +1,1 @@
-streamlit run "C:\Users\rkama\OneDrive\Desktop\MultipleDiseasePredictionSystem\multiplediseasepred.py"
-
-id = 78630419
-
-key = 264f6c7348734522eb93841685057f5e
+streamlit run "app.py"
