@@ -614,7 +614,7 @@ else:
                 save_result(username=user[1], disease="Parkinsons Disease", result=parkinsons_diagnosis) 
             
            
-          if selected == 'User Profile':
+         if selected == 'User Profile':
               st.title("User Profile & History")
 
 # Show basic info
