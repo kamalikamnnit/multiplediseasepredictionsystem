@@ -620,7 +620,8 @@ else:
             st.title('Pnuemonia Prediction using ML')
             
             # Load model
-            model = tf.keras.models.load_model(r'C:\Users\rkama\Downloads\pneumonia_model.h5')
+            model_path = os.path.join("All_Models", "pneumonia_model.h5")
+            model = tf.keras.models.load_model(model_path)
             
             
             st.header('Please upload a chest X-ray image')
