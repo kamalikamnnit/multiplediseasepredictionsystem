@@ -319,9 +319,8 @@ else:
                                      'Diabetes Prediction',
                                    'Heart Disease Prediction',
                                    'Parkinsons Prediction',
-                                    'Pnuemonia Prediction',
                                     'User Profile'],  # Added new option   
-                                   icons = ['🧮','activity','heart','person','lungs'],
+                                   icons = ['🧮','activity','heart','person'],
                                    default_index = 0)
             
             
