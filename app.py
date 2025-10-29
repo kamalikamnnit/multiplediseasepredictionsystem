@@ -662,7 +662,7 @@ else:
                                 fig.savefig(bar_chart_path)
 
 
-                        if st.button("📄 Generate PDF Report"):
+                if st.button("📄 Generate PDF Report"):
         # Generate PDF (returns bytes)
                                     try:
                 # Generate PDF (returns bytes)
