@@ -21,6 +21,25 @@ import os
 import base64
 
 
+# ----------------- DATABASE INITIALIZATION FIX -----------------
+def init_db():
+    """Create results.db and predictions table if not exist."""
+    conn = sqlite3.connect('results.db', check_same_thread=False)
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS predictions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT,
+            disease TEXT,
+            result TEXT,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+# ✅ Call this function immediately to ensure DB setup on startup
+init_db()
 #initialse the cookie manager
 
 
