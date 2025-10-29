@@ -466,37 +466,37 @@ else:
                                 st.subheader(f"🧮 Your BMI is: `{bmi:.2f}`")
 
                                 if bmi < 18.5:
-                                category = "Underweight"
-                                risks = "- Malnutrition\n- Weakened immunity\n- Osteoporosis"
-                                diet = """
-                                🍽️ **Diet Suggestions**:
-                                - Eat calorie-rich meals (nuts, dry fruits, whole milk)
-                                - Add more protein (eggs, legumes, lean meats)
-                                - Healthy fats: avocado, cheese, peanut butter
-                                - Frequent small meals & smoothies
+                                 category = "Underweight"
+                                 risks = "- Malnutrition\n- Weakened immunity\n- Osteoporosis"
+                                 diet = """
+                                 🍽️ **Diet Suggestions**:
+                                 - Eat calorie-rich meals (nuts, dry fruits, whole milk)
+                                 - Add more protein (eggs, legumes, lean meats)
+                                 - Healthy fats: avocado, cheese, peanut butter
+                                 - Frequent small meals & smoothies
                                     """
-                                color = "yellow"
+                                 color = "yellow"
                                 elif 18.5 <= bmi < 24.9:
-                                category = "Normal"
-                                risks = "- Low risk (stay consistent!)"
-                                diet = """
-                                🍽️ **Diet Suggestions**:
-                                - Balanced diet with whole grains, fruits & vegetables
-                                - Lean protein: tofu, chicken, fish
-                                - Regular exercise & hydration
+                                 category = "Normal"
+                                 risks = "- Low risk (stay consistent!)"
+                                 diet = """
+                                 🍽️ **Diet Suggestions**:
+                                 - Balanced diet with whole grains, fruits & vegetables
+                                 - Lean protein: tofu, chicken, fish
+                                 - Regular exercise & hydration
                                 """
-                                color = "green"
+                                 color = "green"
                                 elif 25 <= bmi < 29.9:
-                                category = "Overweight"
-                                risks = "- High blood pressure\n- Type 2 diabetes\n- Joint pain"
-                                diet = """
-                                🍽️ **Diet Suggestions**:
-                                - Cut back on sugar & processed foods
-                                - Include more fiber-rich veggies
-                                - Use olive oil instead of butter
-                                - Start a light cardio workout routine
+                                 category = "Overweight"
+                                 risks = "- High blood pressure\n- Type 2 diabetes\n- Joint pain"
+                                 diet = """
+                                 🍽️ **Diet Suggestions**:
+                                 - Cut back on sugar & processed foods
+                                 - Include more fiber-rich veggies
+                                 - Use olive oil instead of butter
+                                 - Start a light cardio workout routine
                                 """
-                                color = "orange"
+                                 color = "orange"
                         else:
                                 category = "Obese"
                                 risks = "- Heart disease\n- Diabetes\n- Sleep apnea\n- Fatty liver"
