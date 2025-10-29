@@ -671,9 +671,9 @@ else:
                 # Create download link (NO .encode() on pdf_bytes!)
                                         st.success("✅ Report generated! Click below to download.")
                                         st.markdown(
-                        f'<a href="data:application/pdf;base64,{base64.b64encode(pdf_bytes).decode()}" download="health_report.pdf">📥 Download Report</a>',
-                        unsafe_allow_html=True
-                )
+                                        f'<a href="data:application/pdf;base64,{base64.b64encode(pdf_bytes).decode()}" download="health_report.pdf">📥 Download Report</a>',
+                                        unsafe_allow_html=True)
+                
                                     except Exception as e:
                                         st.error(f"Error generating PDF: {str(e)}")
 
