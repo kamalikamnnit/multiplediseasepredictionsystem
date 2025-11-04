@@ -19,6 +19,7 @@ from fpdf import FPDF
 from datetime import datetime
 import os
 import base64
+import re
 
 
 # ----------------- DATABASE INITIALIZATION FIX -----------------
@@ -40,12 +41,34 @@ def init_db():
 
 # ✅ Call this function immediately to ensure DB setup on startup
 init_db()
-#initialse the cookie manager
-
 
 
 load_dotenv()
 #loading the saved models
+
+
+def is_password_strong(password):
+    """
+    Checks if a password meets the required complexity:
+    - Minimum 8 characters long.
+    - Contains at least one digit (0-9).
+    - Contains at least one lowercase letter (a-z).
+    - Contains at least one uppercase letter (A-Z).
+    - Contains at least one special character (e.g., !@#$%^&*).
+    """
+    if len(password) < 8:
+        return False, "Password must be at least 8 characters long."
+    
+    # Regular expression pattern to check for complexity
+    pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?]).{8,}$"
+    
+    if re.match(pattern, password):
+        return True, ""
+    else:
+        # Detailed feedback for the user
+        feedback = "Password must include at least: 1 number, 1 lowercase letter, 1 uppercase letter, and 1 special character (e.g., !@#$%^&*)."
+        return False, feedback
+
 
 diabetes_model = pickle.load(open('All_Models/diabetes_model.sav', 'rb'))
 
@@ -235,13 +258,24 @@ if not st.session_state.logged_in:
                 height = st.number_input("Height (cm)")
                 weight = st.number_input("Weight (kg)")
                 password = st.text_input("Password", type='password')
+                confirm_password = st.text_input("Confirm Password", type='password')
 
                 if st.button("Register"):
-                        try:
-                                add_user(username, name, age, height, weight, password)
-                                st.success("Registered successfully! Please log in.")
-                        except:
-                                st.error("Username already exists. Try a different one.")
+                        # --- VALIDATION CHECKS ---
+                            if password != confirm_password:
+                               st.error("Passwords do not match. Please re-enter.")
+                            else:
+                               is_valid, feedback = is_password_strong(password)
+                               if not is_valid:
+                                 st.error(f"❌ Invalid Password: {feedback}")
+                               else:
+                                 try:
+                                   add_user(username, name, age, height, weight, password)
+                                   st.success("Registered successfully! Please log in.")
+                                 except sqlite3.IntegrityError:
+                                     st.error("Username already exists. Try a different one.")
+                                 except Exception as e:
+                                     st.error(f"An unexpected error occurred during registration: {e}")
 
         elif choice == "Login":
                 st.subheader("Login to Your Account")
