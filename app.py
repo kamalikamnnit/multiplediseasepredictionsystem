@@ -589,8 +589,8 @@ else:
                                st.success("Healthy")
                             elif 25 <= bmi < 29.9:
                                st.warning("Overweight")
-         else:
-                st.error("Obese")
+                            else:
+                               st.error("Obese")
 
 # Fetch prediction history
                             df = get_user_predictions(user[0])  # user[0] is the username
