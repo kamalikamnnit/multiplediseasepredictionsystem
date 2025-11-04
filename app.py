@@ -179,13 +179,8 @@ def create_pdf_report(user, df, chart_data, bar_chart_path, timeline_fig_path):
         pdf.add_page()
 
         # Try to use DejaVu (Unicode support), fallback to Arial
-        try:
-                pdf.add_font("DejaVu", "", "C:\\Users\\rkama\\OneDrive\\Desktop\\MultipleDiseasePredictionSystem\\dejavu-fonts-ttf-2.37\\ttf\\DejaVuSans.ttf", uni=True)
-                pdf.set_font("DejaVu", "", 12)
-        except RuntimeError:
-                st.warning("⚠️ DejaVu font not found, falling back to Arial (limited Unicode support)")
-                pdf.set_font("Arial", "", 12)
-                df = df.replace("✅", "Yes").replace("❌", "No")  # Fallback replacements
+        pdf.set_font("Arial", "", 12)
+        df['Result'] = df['Result'].astype(str).str.replace("✅", "Yes").str.replace("❌", "No")
 
         # --- PDF Content Generation ---
         pdf.cell(200, 10, txt=f"Health Report for {user[1]}", ln=True)
@@ -264,46 +259,9 @@ if not st.session_state.logged_in:
                                 st.error("Invalid credentials. Please try again.")
 
 else:
-        # ----------------- USER DASHBOARD -----------------
+        # ----------------- USER  -----------------
         user = st.session_state.user_data
         st.sidebar.success(f"Logged in as {user[0]}")
-        st.subheader("👤 User Profile")
-        st.write(f"**Name:** {user[1]}")
-        st.write(f"**Age:** {user[2]}")
-        st.write(f"**Height:** {user[3]} cm")
-        st.write(f"**Weight:** {user[4]} kg")
-
-        # ----------------- BMI CALCULATION -----------------
-        height_m = user[3] / 100
-        bmi = round(user[4] / (height_m ** 2), 2)
-        st.write(f"**BMI:** {bmi}")
-
-        if bmi < 18.5:
-                st.warning("Underweight")
-        elif 18.5 <= bmi < 24.9:
-                st.success("Healthy")
-        elif 25 <= bmi < 29.9:
-                st.warning("Overweight")
-        else:
-                st.error("Obese")
-
-        st.subheader("Your test history")
-
-        conn = sqlite3.connect('results.db', check_same_thread=False)
-        cursor = conn.cursor()
-        cursor.execute('SELECT disease, result, timestamp FROM predictions WHERE username = ?', (user[1],))
-        data = cursor.fetchall()
-        conn.close()
-
-        if data:
-                for row in data:
-                        st.write(f"**Disease**: {row[0]}")
-                        st.write(f"**Result**: {row[1]}")
-                        st.write(f"**Date**: {row[2]}")
-                        st.markdown("---")
-        else:
-                st.info("No test results found.")
-
 
         # ----------------- MAIN TABS -----------------
         tab = st.selectbox("🔍 What would you like to explore?", 
@@ -616,10 +574,23 @@ else:
 
                 if selected == 'User Profile':
                             st.title("User Profile & History")
-
+                            
 # Show basic info
                             st.subheader("Welcome, " + user[1])
                             st.write(f"Age: {user[2]}, Height: {user[3]} cm, Weight: {user[4]} kg")
+                            # ----------------- BMI CALCULATION -----------------
+                            height_m = user[3] / 100
+                            bmi = round(user[4] / (height_m ** 2), 2)
+                            st.write(f"**BMI:** {bmi}")
+
+                            if bmi < 18.5:
+                               st.warning("Underweight")
+                            elif 18.5 <= bmi < 24.9:
+                               st.success("Healthy")
+                            elif 25 <= bmi < 29.9:
+                               st.warning("Overweight")
+         else:
+                st.error("Obese")
 
 # Fetch prediction history
                             df = get_user_predictions(user[0])  # user[0] is the username
