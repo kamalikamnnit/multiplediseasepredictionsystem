@@ -307,7 +307,7 @@ else:
 
         # ----------------- MAIN TABS -----------------
         tab = st.selectbox("🔍 What would you like to explore?", 
-                                            ["Disease Predictions", "Diet & Nutrition", "Logout", "Generate Pdf Report"])
+                                            ["Disease Predictions", "Diet & Nutrition", "Logout"])
 
         if tab == "Disease Predictions":
                 st.subheader("🔬 Disease Prediction")
@@ -662,10 +662,10 @@ else:
                                 fig.savefig(bar_chart_path)
 
 
-                if st.button("📄 Generate PDF Report"):
-        # Generate PDF (returns bytes)
+                                if st.button("📄 Generate PDF Report"):
+       
                                     try:
-                # Generate PDF (returns bytes)
+                                 # Generate PDF (returns bytes)
                                         pdf_bytes = create_pdf_report(user, df_sorted, chart_data, bar_chart_path, timeline_fig_path)
 
                 # Create download link (NO .encode() on pdf_bytes!)
@@ -731,15 +731,7 @@ else:
                 st.success("You have been logged out.")
                 st.rerun()
 
-        elif tab == "Generate Pdf Report":
-                user_data = st.session_state.user_data
-                pdf_bytes = create_pdf_report(user_data)
-                st.download_button(
-                            label = "Download PDF Report",
-                            data = pdf_bytes,
-                            file_name = "report.pdf",
-                            mime="application/pdf"
-                        )
+        
 
 
 
